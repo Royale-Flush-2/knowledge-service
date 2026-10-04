@@ -1,7 +1,7 @@
 # knowledge-service/src/adapters/huggingface_embedding_adapter.py
 from langchain_huggingface import HuggingFaceEmbeddings
-from src.core.ports.embedding_provider import IEmbeddingProvider
-from src.core.config import settings
+from core.ports.embedding_provider import IEmbeddingProvider
+from core.config import settings
 
 class HuggingFaceEmbeddingAdapter(IEmbeddingProvider):
     def __init__(self, model_name: str | None = None):

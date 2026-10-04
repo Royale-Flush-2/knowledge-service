@@ -2,8 +2,8 @@
 from typing import List, Tuple
 from langchain_core.documents import Document
 from langchain_postgres import PGVector
-from src.core.ports.vector_store import IVectorStore
-from src.core.ports.embedding_provider import IEmbeddingProvider
+from core.ports.vector_store import IVectorStore
+from core.ports.embedding_provider import IEmbeddingProvider
 
 class PGVectorAdapter(IVectorStore):
     def __init__(self, embedding_provider: IEmbeddingProvider, database_url: str):
