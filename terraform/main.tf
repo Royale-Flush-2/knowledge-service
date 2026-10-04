@@ -48,6 +48,7 @@ resource "aws_apprunner_service" "app_service" {
   service_name = var.app_name
 
   source_configuration {
+    auto_deployments_enabled = true
     authentication_configuration { access_role_arn = aws_iam_role.apprunner_access_role.arn }
     image_repository {
       image_identifier      = "${aws_ecr_repository.app_repo.repository_url}:latest"
