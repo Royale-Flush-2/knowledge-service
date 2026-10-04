@@ -39,6 +39,11 @@ resource "aws_iam_role" "apprunner_instance_role" {
   })
 }
 
+resource "time_sleep" "wait_for_iam" {
+  depends_on = [aws_iam_role_policy_attachment.apprunner_ecr_access]
+  create_duration = "15s"
+}
+
 resource "aws_apprunner_service" "app_service" {
   service_name = var.app_name
 
@@ -63,5 +68,5 @@ resource "aws_apprunner_service" "app_service" {
     cpu               = "1024"
     memory            = "2048"
   }
-  depends_on = [aws_iam_role_policy_attachment.apprunner_ecr_access]
+  depends_on = [time_sleep.wait_for_iam]
 }
