@@ -9,10 +9,10 @@ RUN uv sync --frozen --no-dev
 
 FROM python:3.11-slim-bookworm AS runtime
 WORKDIR /app
-ENV PYTHONUNBUFFERED=1 PYTHONDONTWRITEBYTECODE=1 PATH="/app/.venv/bin:$PATH" PORT=8000 HOST=0.0.0.0
+ENV PYTHONUNBUFFERED=1 PYTHONDONTWRITEBYTECODE=1 PATH="/app/.venv/bin:$PATH" PORT=8000 HOST=0.0.0.0 PYTHONPATH="/app/src"
 RUN groupadd -r appuser && useradd -r -g appuser -d /app -s /sbin/nologin appuser
 COPY --from=builder --chown=appuser:appuser /app/.venv /app/.venv
 COPY --chown=appuser:appuser src/ /app/src/
 USER appuser
 EXPOSE 8000
-CMD ["sh", "-c", "exec uvicorn src.api.main:app --host 0.0.0.0 --port ${PORT}"]
+CMD ["sh", "-c", "exec uvicorn api.main:app --host 0.0.0.0 --port ${PORT}"]

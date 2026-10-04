@@ -1,10 +1,10 @@
-import fitz  # PyMuPDF
+import pymupdf as fitz  # PyMuPDF
 from typing import Any, Dict, List, Tuple
-from langchain.text_splitter import RecursiveCharacterTextSplitter
+from langchain_text_splitters import RecursiveCharacterTextSplitter
 from langchain_core.documents import Document
-from src.core.ports.vector_store import IVectorStore
-from src.core.config import settings
-from src.core.logging import get_logger
+from core.ports.vector_store import IVectorStore
+from core.config import settings
+from core.logging import get_logger
 
 logger = get_logger("centinela.knowledge-service", settings.log_level)
 

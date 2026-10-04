@@ -2,12 +2,12 @@ import uuid
 import psycopg2
 from fastapi import FastAPI, UploadFile, File, Form, HTTPException, Request
 from fastapi.responses import JSONResponse
-from src.core.models import IngestAuditRequest, SearchRequest, SearchResponse, SearchResult
-from src.core.config import settings
-from src.core.logging import get_logger
-from src.adapters.huggingface_embedding_adapter import HuggingFaceEmbeddingAdapter
-from src.adapters.pgvector_adapter import PGVectorAdapter
-from src.services.knowledge_agent import KnowledgeAgent
+from core.models import IngestAuditRequest, SearchRequest, SearchResponse, SearchResult
+from core.config import settings
+from core.logging import get_logger
+from adapters.huggingface_embedding_adapter import HuggingFaceEmbeddingAdapter
+from adapters.pgvector_adapter import PGVectorAdapter
+from services.knowledge_agent import KnowledgeAgent
 
 logger = get_logger("centinela.knowledge-service", settings.log_level)
 app = FastAPI(title="Centinela - El Bibliotecario (Knowledge Service, Enterprise Edition)")
@@ -86,4 +86,4 @@ async def search(request: SearchRequest):
 
 if __name__ == "__main__":
     import uvicorn
-    uvicorn.run("src.api.main:app", host="0.0.0.0", port=8001, reload=True)
+    uvicorn.run("api.main:app", host="0.0.0.0", port=8001, reload=True)

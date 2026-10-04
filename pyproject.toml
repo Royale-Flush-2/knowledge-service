@@ -17,6 +17,7 @@ dependencies = [
     "langchain-community",
     "langchain-postgres",
     "langchain-huggingface",
+    "langchain-text-splitters",
     "sentence-transformers",
     "pydantic-settings>=2.0"
 ]
